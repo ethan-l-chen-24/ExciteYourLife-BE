@@ -1,8 +1,7 @@
 // Entrypoint for the backend server
 // Author: Ethan Chen
-
-// imports
 // --------------------------------------------
+
 const express = require('express');
 const mongoose = require('mongoose');
 
@@ -29,8 +28,8 @@ const app = express();
 
 // ROUTING
 // --------------------------------------------
-const user = require('./routes/user.js');
-app.use('/api/user', user);
+const userRouter = require('./routes/userRouter.js');
+app.use('/api/user', userRouter);
 
 
 // START SERVER
