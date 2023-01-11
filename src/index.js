@@ -24,6 +24,7 @@ db.on('error', (err) => {
 // INIT APPLICATION
 // --------------------------------------------
 const app = express();
+app.use(express.urlencoded({ extended: false }));
 
 
 // ROUTING
@@ -37,3 +38,4 @@ app.use('/api/user', userRouter);
 app.listen(3000, () => {
     console.log('Server started on port 3000...');
 });
+
