@@ -26,11 +26,26 @@ db.on('error', (err) => {
 const app = express();
 app.use(express.urlencoded({ extended: false }));
 
+// to remove *****
+app.set('view-engine', 'ejs');
+
 
 // ROUTING
 // --------------------------------------------
 const userRouter = require('./routes/userRouter.js');
 app.use('/api/user', userRouter);
+
+app.get('/', (req, res) => {
+    res.render('index.ejs');
+});
+
+app.get('/login', (req, res) => {
+    res.render('login.ejs');
+});
+
+app.get('/register', (req, res) => {
+    res.render('register.ejs');
+});
 
 
 // START SERVER

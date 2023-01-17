@@ -1,8 +1,10 @@
+// imports
 const mongoose = require('mongoose');
 
+// schema
 const schema = new mongoose.Schema({
     // identifier
-    username: { type: String },
+    username: { type: String }, // primary key
 
     // criteria
     weather: { type: Number },
