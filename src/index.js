@@ -3,12 +3,16 @@
 // --------------------------------------------
 
 const express = require('express');
+const session = require("express-session");
 const mongoose = require('mongoose');
+const bodyparser = require('body-parser')
+const passport = require('passport');
 
 
 // CONNECT TO DATABASE
 // --------------------------------------------
-mongoose.connect('mongodb://localhost/dev');
+// password 3yNW0joTCOSlj54R
+mongoose.connect('mongodb+srv://ethan-l-chen-24:3yNW0joTCOSlj54R@cluster0.xmpzkcb.mongodb.net/?retryWrites=true&w=majority');
 var db = mongoose.connection;
 
 // log messages once opened and if error
@@ -24,7 +28,21 @@ db.on('error', (err) => {
 // INIT APPLICATION
 // --------------------------------------------
 const app = express();
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyparser.urlencoded({ extended: false }));
+app.use(bodyparser.json());
+
+app.use(
+    session({
+        secret: "secret",
+        resave: false,
+        saveUninitialized: true,
+    })
+)
+
+
+// passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 // to remove *****
 app.set('view-engine', 'ejs');

@@ -1,12 +1,27 @@
 const express = require('express');
 const router = express.Router();
+const UserController = require('../controllers/userController');
+
+router.get('/', (req, res) => {
+    res.json({
+        body: "Hello World"
+    })
+});
 
 router.post('/login', (req, res) => {
 
 });
 
 router.post('/register', (req, res) => {
+
+    const body = req.body;
     
+    try {
+        UserController.register(req, res, next, body.name, body.email, body.password);
+        res.sendStatus(200);
+    } catch(error) {
+        res.send(error);
+    }
 });
 
 module.exports = router;
